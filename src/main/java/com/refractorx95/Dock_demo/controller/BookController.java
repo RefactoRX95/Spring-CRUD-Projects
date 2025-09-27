@@ -10,11 +10,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/DockRefractoRX")
-public class DockController {
+public class BookController {
 
     BookService bookService;
 
-    p
+    public BookController(BookService bookService){
+        this.bookService = bookService;
+    }
+
     @GetMapping("/{bookId}")
     public ResponseEntity<String> getDock(@PathVariable String bookId){
 
