@@ -1,11 +1,11 @@
 package com.refractorx95.Dock_demo.controller;
 
+import com.refractorx95.Dock_demo.dto.BookDto;
 import com.refractorx95.Dock_demo.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,35 +19,34 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<String> getDock(@PathVariable String bookId){
-
-        return new ResponseEntity<>("Book Found: " + bookId, HttpStatus.OK);
+    public ResponseEntity<BookDto> getDock(@PathVariable String bookId){
+        BookDto bookDto = bookService.getBook(bookId);
+        return new ResponseEntity<>(bookDto, HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<String>> getAllBooks(){
-        List<String> books = new ArrayList();
-        books.add("Java");
-        books.add("MongoDB");
-        books.add("Spring Boot");
-
-        return new ResponseEntity<>(books, HttpStatus.OK);
+    public ResponseEntity<List<BookDto>> getAllBooks(){
+        List<BookDto> bookDtoList = bookService.getAllBooks();
+        return new ResponseEntity<>(bookDtoList, HttpStatus.OK);
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> createBooks(String book){
-        return new ResponseEntity<>("Book Created", HttpStatus.OK);
+    public ResponseEntity<BookDto> createBooks(@RequestBody BookDto bookDto){
+        BookDto bookDto1 = bookService.createBook(bookDto);
+        return new ResponseEntity<>(bookDto1, HttpStatus.OK);
     }
 
     @PutMapping("/")
-    public  ResponseEntity<String> updateBook(String book)
+    public  ResponseEntity<BookDto> updateBook(@RequestBody BookDto bookDto)
     {
-        return new ResponseEntity<>("Book Updated",HttpStatus.OK);
+        BookDto bookDto1 = bookService.updateBookName(bookDto);
+        return new ResponseEntity<>(bookDto1,HttpStatus.OK);
     }
 
     @DeleteMapping("/{bookId}")
     public ResponseEntity<String> deleteBook(@PathVariable String bookId)
     {
+        bookService.deleteBookByBookId(bookId);
         return new ResponseEntity<>("Book deleted Successfully " + bookId,HttpStatus.OK);
     }
 }

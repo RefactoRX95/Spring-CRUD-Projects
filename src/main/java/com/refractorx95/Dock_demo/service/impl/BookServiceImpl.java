@@ -5,10 +5,12 @@ import com.refractorx95.Dock_demo.entity.Book;
 import com.refractorx95.Dock_demo.mapper.BookMapper;
 import com.refractorx95.Dock_demo.repository.BookRepository;
 import com.refractorx95.Dock_demo.service.BookService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService {
 
     BookRepository bookRepository;
