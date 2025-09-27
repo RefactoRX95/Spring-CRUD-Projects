@@ -1,5 +1,6 @@
 package com.refractorx95.Dock_demo.controller;
 
+import com.refractorx95.Dock_demo.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,9 @@ import java.util.List;
 @RequestMapping("/DockRefractoRX")
 public class DockController {
 
+    BookService bookService;
+
+    p
     @GetMapping("/{bookId}")
     public ResponseEntity<String> getDock(@PathVariable String bookId){
 
