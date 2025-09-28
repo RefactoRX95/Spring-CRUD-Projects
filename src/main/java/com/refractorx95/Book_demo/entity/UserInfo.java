@@ -12,6 +12,9 @@ public class UserInfo {
     private String password;
     private String roles;
 
+    public UserInfo(String s, String password, String roles) {
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }

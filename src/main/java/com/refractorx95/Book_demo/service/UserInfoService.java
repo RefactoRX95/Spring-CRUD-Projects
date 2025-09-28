@@ -6,4 +6,5 @@ public interface UserInfoService {
 
     public UserInfoDto createUser(UserInfoDto userInfoDto);
 
+    public String getUserInfo(UserInfoDto userInfoDto);
 }
