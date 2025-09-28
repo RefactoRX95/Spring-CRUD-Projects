@@ -48,7 +48,7 @@ public class SecurityConfig {
     {
         httpSecurity.csrf(csrfCustomizer -> csrfCustomizer.disable());
         httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers("/book-store/welcome").permitAll()
+                request.requestMatchers("/book-store/welcome" , "/user-info/register").permitAll()
                         .anyRequest().authenticated());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.sessionManagement(session ->
