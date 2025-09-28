@@ -2,8 +2,11 @@ package com.refractorx95.Book_demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,16 +19,20 @@ import javax.swing.plaf.PanelUI;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
         UserDetails userDetailsOne = User.withUsername("User1")
-                .password(passwordEncoder().encode("Pass1")).build();
+                .password(passwordEncoder().encode("Pass1"))
+                .roles("USER").build();
         UserDetails userDetailsTwo = User.withUsername("User2")
-                .password(passwordEncoder().encode("Pass2")).build();
+                .password(passwordEncoder().encode("Pass2"))
+                .roles("USER").build();
         UserDetails admin = User.withUsername("Admin")
-                .password(passwordEncoder().encode("Admin1")).build();
+                .password(passwordEncoder().encode("Admin1"))
+                .roles("ADMIN").build();
 
         return new InMemoryUserDetailsManager(userDetailsOne,
                 userDetailsTwo,admin);
@@ -39,9 +46,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception
     {
+        httpSecurity.csrf(csrfCustomizer -> csrfCustomizer.disable());
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers("/book-store/welcome").permitAll()
                         .anyRequest().authenticated());
+        httpSecurity.httpBasic(Customizer.withDefaults());
+        httpSecurity.sessionManagement(session ->
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        return httpSecurity.build();
+
     }
 
 }
