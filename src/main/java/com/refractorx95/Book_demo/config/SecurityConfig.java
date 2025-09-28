@@ -1,5 +1,6 @@
 package com.refractorx95.Book_demo.config;
 
+import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.swing.plaf.PanelUI;
 
@@ -46,6 +48,8 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtFilter jwtFilter;
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -56,11 +60,13 @@ public class SecurityConfig {
     {
         httpSecurity.csrf(csrfCustomizer -> csrfCustomizer.disable());
         httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers("/book-store/welcome" , "/user-info/register").permitAll()
+                request.requestMatchers("/book-store/welcome" , "/user-info/register",
+                                "/user-info/login").permitAll()
                         .anyRequest().authenticated());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
 
     }

@@ -4,6 +4,7 @@ import com.refractorx95.Book_demo.dto.UserInfoDto;
 import com.refractorx95.Book_demo.entity.UserInfo;
 import com.refractorx95.Book_demo.mapper.UserInfoMapper;
 import com.refractorx95.Book_demo.repository.UserInfoRepository;
+import com.refractorx95.Book_demo.service.JWTService;
 import com.refractorx95.Book_demo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     AuthenticationManager  authenticationManager;
 
+    @Autowired
+    public JWTService jwtService;
+
     @Override
     public UserInfoDto createUser(UserInfoDto userInfoDto) {
        UserInfo userInfo = UserInfoMapper.toEntity(userInfoDto);
@@ -40,7 +44,7 @@ public class UserInfoServiceImpl implements UserInfoService {
                 )
         );
         if (authentication.isAuthenticated())
-            return "Success";
+            return jwtService.generateToken(userInfoDto.userName());
         return  "Failure";
     }
 }

@@ -28,6 +28,6 @@ public class UserInfoController {
     @PostMapping("/login")
     public  ResponseEntity<String> getUserInfo(@RequestBody UserInfoDto userInfoDto)
     {
-        return new ResponseEntity<>("Success",HttpStatus.OK);
+        return new ResponseEntity<>(userInfoService.getUserInfo(userInfoDto),HttpStatus.OK);
     }
 }
