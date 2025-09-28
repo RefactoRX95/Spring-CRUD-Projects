@@ -22,7 +22,7 @@ import javax.swing.plaf.PanelUI;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Bean
+/*    @Bean
     public UserDetailsService userDetailsService(){
         UserDetails userDetailsOne = User.withUsername("User1")
                 .password(passwordEncoder().encode("Pass1"))
@@ -36,7 +36,7 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(userDetailsOne,
                 userDetailsTwo,admin);
-    }
+    }*/
 
     @Bean
     PasswordEncoder passwordEncoder(){
