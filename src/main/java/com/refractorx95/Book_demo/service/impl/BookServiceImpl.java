@@ -1,10 +1,10 @@
-package com.refractorx95.Dock_demo.service.impl;
+package com.refractorx95.Book_demo.service.impl;
 
-import com.refractorx95.Dock_demo.dto.BookDto;
-import com.refractorx95.Dock_demo.entity.Book;
-import com.refractorx95.Dock_demo.mapper.BookMapper;
-import com.refractorx95.Dock_demo.repository.BookRepository;
-import com.refractorx95.Dock_demo.service.BookService;
+import com.refractorx95.Book_demo.dto.BookDto;
+import com.refractorx95.Book_demo.entity.Book;
+import com.refractorx95.Book_demo.mapper.BookMapper;
+import com.refractorx95.Book_demo.repository.BookRepository;
+import com.refractorx95.Book_demo.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

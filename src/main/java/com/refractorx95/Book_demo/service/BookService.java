@@ -1,6 +1,6 @@
-package com.refractorx95.Dock_demo.service;
+package com.refractorx95.Book_demo.service;
 
-import com.refractorx95.Dock_demo.dto.BookDto;
+import com.refractorx95.Book_demo.dto.BookDto;
 
 import java.util.List;
 

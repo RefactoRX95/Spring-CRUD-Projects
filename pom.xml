@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.refractorx95</groupId>
-	<artifactId>Dock-demo</artifactId>
+	<artifactId>Book-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Dock-demo</name>
+	<name>Book-demo</name>
 	<description>Docker Demo learn-project for Spring Boot</description>
 	<url/>
 	<licenses>

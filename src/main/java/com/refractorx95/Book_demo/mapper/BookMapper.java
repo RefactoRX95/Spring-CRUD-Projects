@@ -1,7 +1,7 @@
-package com.refractorx95.Dock_demo.mapper;
+package com.refractorx95.Book_demo.mapper;
 
-import com.refractorx95.Dock_demo.dto.BookDto;
-import com.refractorx95.Dock_demo.entity.Book;
+import com.refractorx95.Book_demo.dto.BookDto;
+import com.refractorx95.Book_demo.entity.Book;
 
 public class BookMapper {
 

@@ -1,7 +1,7 @@
-package com.refractorx95.Dock_demo.controller;
+package com.refractorx95.Book_demo.controller;
 
-import com.refractorx95.Dock_demo.dto.BookDto;
-import com.refractorx95.Dock_demo.service.BookService;
+import com.refractorx95.Book_demo.dto.BookDto;
+import com.refractorx95.Book_demo.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/DockRefractoRX")
+@RequestMapping("/book-store")
 public class BookController {
 
     BookService bookService;

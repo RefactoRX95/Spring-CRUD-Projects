@@ -1,14 +1,14 @@
-package com.refractorx95.Dock_demo;
+package com.refractorx95.Book_demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DockDemoApplication {
+public class BookDemoApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(DockDemoApplication.class, args);
+		SpringApplication.run(BookDemoApplication.class, args);
 	}
 
 }

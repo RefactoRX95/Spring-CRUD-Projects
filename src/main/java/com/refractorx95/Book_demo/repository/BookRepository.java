@@ -1,6 +1,6 @@
-package com.refractorx95.Dock_demo.repository;
+package com.refractorx95.Book_demo.repository;
 
-import com.refractorx95.Dock_demo.entity.Book;
+import com.refractorx95.Book_demo.entity.Book;
 import org.springframework.data.mongodb.repository.DeleteQuery;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
