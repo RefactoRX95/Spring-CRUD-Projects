@@ -8,25 +8,31 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInfo {
+    private String userName;
+    private String password;
+    private String roles;
 
-        private String userName;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-        private String password;
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        private String roles;
-
-    public UserInfo(String userName, String password, String roles) {
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public String getRoles() {
         return roles;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }
