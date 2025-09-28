@@ -5,12 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserInfo {
     private String userName;
     private String password;
     private String roles;
+
+    public UserInfo(String userName, String password, String roles) {
+        this.userName = userName;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;

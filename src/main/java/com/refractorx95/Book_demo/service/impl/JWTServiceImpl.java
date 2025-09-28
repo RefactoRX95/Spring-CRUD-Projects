@@ -1,9 +1,11 @@
 package com.refractorx95.Book_demo.service.impl;
 
 import com.refractorx95.Book_demo.service.JWTService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
@@ -13,6 +15,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
 public class JWTServiceImpl implements JWTService {
@@ -36,6 +39,43 @@ public class JWTServiceImpl implements JWTService {
                 .signWith(getKey())
                 .compact();
     }
+
+    @Override
+    public String extractUserName(String jwtToken) {
+        return extractClaim(jwtToken, Claims::getSubject);
+    }
+
+    @Override
+    public boolean validateToken(String jwtToken, UserDetails userDetails) {
+        final String userName = extractUserName(jwtToken);
+
+        return (userName.equals(userDetails.getUsername()) && !isTokenExpired(jwtToken));
+    }
+
+    private boolean isTokenExpired(String jwtToken)
+    {
+        return extractExpiration(jwtToken).before(new Date());
+    }
+
+    private Date extractExpiration(String jwtToken)
+    {
+        return extractClaim(jwtToken, Claims::getExpiration);
+    }
+
+    private <T> T extractClaim(String jwtToken, Function<Claims, T> claimResolver)
+    {
+        final Claims claims = extractAllClaims(jwtToken);
+        return claimResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String jwtToken) {
+        return Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(jwtToken)
+                .getPayload();
+    }
+
 
     private SecretKey getKey()
     {
